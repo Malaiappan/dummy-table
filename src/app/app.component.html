@@ -1,0 +1,28 @@
+<div class="header">
+  <span>Logo</span>
+  <span>Some Message</span>
+  <span class="refresh"></span>
+</div>
+
+<div class="refreshedAt">
+  <span>Last refreshed @ {{lastRefreshedTime}}</span>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <td>Heading 1</td>
+    <td>Heading 2</td>
+    <td>Heading 3</td>
+    <td>Heading 4</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of items">
+    <td>{{item.name}}</td>
+    <td>{{item.location}}</td>
+    <td [ngClass]="item.statusLastHour"></td>
+    <td [ngClass]="item.statusLastDay"></td>
+  </tr>
+  </tbody>
+</table>
