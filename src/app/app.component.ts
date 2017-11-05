@@ -10,7 +10,9 @@ export class AppComponent implements OnInit {
 
     items: Item[];
     levelOneData: DashBoardData[];
+    apiFailed: boolean;
     lastRefreshedTime: string;
+    alert: boolean;
 
     constructor(private mainService: MainService) {
     }
@@ -18,11 +20,17 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.items = this.mainService.getData();
         this.getLevelOneData();
-        // setInterval(this.getLevelOneData(), 1000);
+        this.autoRefresh();
     }
 
     refreshData() {
         this.getLevelOneData();
+    }
+
+    autoRefresh() {
+        setInterval(() => {
+            this.getLevelOneData();
+        }, 60 * 1000);
     }
 
     private getLevelOneData() {
@@ -30,9 +38,14 @@ export class AppComponent implements OnInit {
         this.mainService.getData2()
             .subscribe((res) => {
                     this.levelOneData = res.dashBoardData;
+                    this.alert = this.levelOneData
+                        .map(data => data.oneHrstatus)
+                        .filter(oneHrStatus => oneHrStatus === 'red')
+                        .length > 2;
                 },
                 (err) => {
                     console.log(err);
+                    this.apiFailed = true;
                 });
     }
 }

@@ -8,7 +8,7 @@
   <span>Last refreshed @ {{lastRefreshedTime}}</span>
 </div>
 
-<table *ngIf="levelOneData; else failure">
+<table *ngIf="levelOneData">
   <thead>
   <tr>
     <td>Application name</td>
@@ -27,4 +27,11 @@
   </tbody>
 </table>
 
-<div #failure class="fatal">Sorry something went wrong</div>
+<div *ngIf="apiFailed" class="fatal">Sorry something went wrong</div>
+
+<div *ngIf="alert" id="openModal" class="modalDialog" (click)="alert = false">
+    <div>
+        <a (click)="alert = false" class="close">X</a>
+        <p class="blink-me">Many Applications are down !!!</p>
+    </div>
+</div>
