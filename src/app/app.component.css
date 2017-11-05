@@ -69,18 +69,18 @@ td {
 
 .yellow {
     background: url('../assets/warning1.png') no-repeat;
-    background-size: 25% 75%;
+    background-size: 33px;
     background-position: center;
 }
 
 .red {
     background: url('../assets/error1.png') no-repeat;
-    background-size: 25% 75%;
+    background-size: 30px;
     background-position: center;
 }
 
 .green {
     background: url('../assets/up.png') no-repeat;
-    background-size: 25% 75%;
+    background-size: 35px;
     background-position: center;
 }
