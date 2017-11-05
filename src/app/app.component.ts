@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
         this.mainService.getData2()
             .subscribe((res) => {
                     this.levelOneData = res.dashBoardData;
+                    this.apiFailed = false;
                     this.alert = this.levelOneData
                         .map(data => data.oneHrstatus)
                         .filter(oneHrStatus => oneHrStatus === 'red')
