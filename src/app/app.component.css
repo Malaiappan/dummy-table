@@ -1,12 +1,12 @@
 body {
-    color: #444;
+    color: #0b1761;
     font-family: 'HNL', verdana, arial;
     text-shadow: 0 1px 0 #fff;
 }
 
 .header {
     width: 100%;
-    height: 66px;
+    height: 75px;
     background-color: #ffffff;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12);
     display: flex;
@@ -15,18 +15,31 @@ body {
 }
 
 .header span {
-    margin: 20px;
+    margin: 0 20px;
     color: #83458b;
     font-family: 'HNT';
-    font-size: 15px;
     font-weight: 600;
     letter-spacing: 1.2px;
 }
 
+.logo {
+    background: url("https://static.skyteam.com/skyteampreview/images/skyteam.png") no-repeat;
+    width: 200px;
+    height: 100px;
+    background-size: 100%;
+    color: #0b1761;
+    background-position: center;
+    position: relative;
+}
+
+.heading {
+    font-size: 26px;
+}
+
 .refresh {
     background: url('../assets/refresh.png') no-repeat;
-    width: 31px;
-    height: 31px;
+    width: 10%;
+    height: 100%;
     background-position: center;
     cursor: pointer;
 }
@@ -35,21 +48,23 @@ body {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+    color: #0b1761;
+    margin-top: 10px;
 }
 
 table {
     background: #f5f5f5;
     border-collapse: separate;
-    box-shadow: inset 0 1px 0 #fff;
+    box-shadow: 1px 5px 5px #888888;
     font-size: 12px;
     line-height: 24px;
     margin: 30px auto;
     text-align: left;
-    width: 800px;
+    width: 80%;
 }
 
 thead {
-    background-color: #a25eaa;
+    background-color: rgba(11, 23, 97, 0.7);;
     border: 1px solid #555;
     color: #fff;
     font-weight: bold;
@@ -99,7 +114,9 @@ td {
 }
 
 @keyframes blinker {
-    50% { opacity: 0; }
+    50% {
+        opacity: 0;
+    }
 }
 
 .modalDialog {
@@ -109,7 +126,7 @@ td {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 99999;
 }
 
@@ -117,9 +134,9 @@ td {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 900px;
-    height: 180px;
-    margin: -90px 0 0 -450px;
+    width: 80%;
+    height: 22%;
+    margin: -11% 0 0 -40%;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
     background: #fff;
@@ -148,4 +165,6 @@ td {
     box-shadow: 1px 1px 3px #000;
 }
 
-.close:hover { background: #83458b; }
+.close:hover {
+    background: rgba(11, 23, 97, 0.7);
+}
