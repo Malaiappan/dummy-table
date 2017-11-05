@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.items = this.mainService.getData();
         this.getLevelOneData();
+        // setInterval(this.getLevelOneData(), 1000);
     }
 
     refreshData() {
@@ -28,7 +29,10 @@ export class AppComponent implements OnInit {
         this.lastRefreshedTime = new Date().toLocaleTimeString();
         this.mainService.getData2()
             .subscribe((res) => {
-                this.levelOneData = res.dashBoardData;
-            });
+                    this.levelOneData = res.dashBoardData;
+                },
+                (err) => {
+                    console.log(err);
+                });
     }
 }

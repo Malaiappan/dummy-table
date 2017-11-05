@@ -8,7 +8,7 @@
   <span>Last refreshed @ {{lastRefreshedTime}}</span>
 </div>
 
-<table>
+<table *ngIf="levelOneData; else failure">
   <thead>
   <tr>
     <td>Application name</td>
@@ -26,3 +26,5 @@
   </tr>
   </tbody>
 </table>
+
+<div #failure class="fatal">Sorry something went wrong</div>
