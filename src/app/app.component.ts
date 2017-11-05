@@ -34,11 +34,11 @@ export class AppComponent implements OnInit {
     }
 
     private getLevelOneData() {
-        this.lastRefreshedTime = new Date().toLocaleTimeString();
         this.mainService.getData2()
             .subscribe((res) => {
                     this.levelOneData = res.dashBoardData;
                     this.apiFailed = false;
+                    this.lastRefreshedTime = new Date().toLocaleTimeString();
                     this.alert = this.levelOneData
                         .map(data => data.oneHrstatus)
                         .filter(oneHrStatus => oneHrStatus === 'red')
