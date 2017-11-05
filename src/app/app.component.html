@@ -1,7 +1,7 @@
 <div class="header">
   <span>Logo</span>
   <span>Some Message</span>
-  <span class="refresh"></span>
+  <span class="refresh" (click)="refreshData()"></span>
 </div>
 
 <div class="refreshedAt">
@@ -18,11 +18,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of items">
-    <td>{{item.name}}</td>
-    <td>{{item.location}}</td>
-    <td [ngClass]="item.statusLastHour"></td>
-    <td [ngClass]="item.statusLastDay"></td>
+  <tr *ngFor="let item of levelOneData">
+    <td>{{item.urlCode}}</td>
+    <td>{{item.urlDescription}}</td>
+    <td [ngClass]="item.oneHrstatus"></td>
+    <td [ngClass]="item.twentyFourHrstatus"></td>
   </tr>
   </tbody>
 </table>
