@@ -1,37 +1,22 @@
-<div class="header">
-  <span class="logo"></span>
-  <span class="heading">Skyteam services availability dashboard</span>
-  <span class="refresh" (click)="refreshData()"></span>
-</div>
-
-<div class="refreshedAt">
-  <span>Last refreshed @ {{lastRefreshedTime}}</span>
-</div>
-
-<table *ngIf="levelOneData">
-  <thead>
-  <tr>
-    <td>Application name</td>
-    <td>Application description</td>
-    <td>Last 1 hr status</td>
-    <td>Last 24 hr status</td>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let item of levelOneData">
-    <td>{{item.urlCode}}</td>
-    <td>{{item.urlDescription}}</td>
-    <td [ngClass]="item.oneHrstatus"></td>
-    <td [ngClass]="item.twentyFourHrstatus"></td>
-  </tr>
-  </tbody>
-</table>
-
-<div *ngIf="apiFailed" class="fatal">Sorry something went wrong during last refresh..</div>
-
-<div *ngIf="alert" id="openModal" class="modalDialog" (click)="alert = false">
-    <div>
-        <a (click)="alert = false" class="close">X</a>
-        <p class="blink-me">Many Applications are down !!!</p>
-    </div>
+<div>
+    <svg version="1.1"
+         [attr.viewBox]="'0 0 ' + (deck.deckWidth) +' '+ (deck.deckLength)"
+         preserveAspectRatio="xMidYMin slice"
+         class="deck-image"
+         xmlns="http://www.w3.org/2000/svg">
+        <svg:g *ngFor="let cabin of deck.cabins">
+            <svg:g *ngFor="let row of cabin.rows">
+                <svg:g *ngFor="let seat of row.columns"
+                       [attr.transform]="getSeatTransform(seat)">
+                    <svg:image [attr.xlink:href]="seat.image" x="0" y="0"
+                               [attr.height]="'35px'"
+                               [attr.width]="'35px'"></svg:image>
+                    <text text-anchor="middle" x="17" y="23" class="deck-seatnumber">
+                        {{row.rowNumber}}{{seat.code}}
+                    </text>
+                </svg:g>
+            </svg:g>
+        </svg:g>
+    </svg>
+    html asdf
 </div>
