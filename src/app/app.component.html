@@ -3,11 +3,11 @@
     <div class="header">SeatMap Demo</div>
 
     <div class="query">
-        <input [value]="origin" [placeholder]="'From'">
-        <input [value]="destination" [placeholder]="'To'">
-        <input [value]="departureDate" [placeholder]="'Travel Date'">
-        <input [value]="departureTime" [placeholder]="'Travel Time'">
-        <input [value]="flightNumber" [placeholder]="'Flight number'">
+        <input [(ngModel)]="origin" [placeholder]="'From'">
+        <input [(ngModel)]="destination" [placeholder]="'To'">
+        <input [(ngModel)]="departureDate" [placeholder]="'Travel Date'">
+        <input [(ngModel)]="departureTime" [placeholder]="'Travel Time'">
+        <input [(ngModel)]="flightNumber" [placeholder]="'Flight number'">
     </div>
 
     <div class="search">
