@@ -1,22 +1,46 @@
+<div class="top">
+
+    <div class="header">SeatMap Demo</div>
+
+    <div class="query">
+        <input [value]="origin" [placeholder]="'From'">
+        <input [value]="destination" [placeholder]="'To'">
+        <input [value]="departureDate" [placeholder]="'Travel Date'">
+        <input [value]="departureTime" [placeholder]="'Travel Time'">
+        <input [value]="flightNumber" [placeholder]="'Flight number'">
+    </div>
+
+    <div class="search">
+        <button class="search-button" (click)="getSeatMap()">Search</button>
+    </div>
+
+</div>
+
 <div>
-    <svg version="1.1"
-         [attr.viewBox]="'0 0 ' + (deck.deckWidth) +' '+ (deck.deckLength)"
-         preserveAspectRatio="xMidYMin slice"
-         class="deck-image"
-         xmlns="http://www.w3.org/2000/svg">
-        <svg:g *ngFor="let cabin of deck.cabins">
-            <svg:g *ngFor="let row of cabin.rows">
+    <!--<div class="wait">-->
+    <div class="wait" *ngIf="seatMapRequested && !seatMapLoaded">
+        <img alt="plane loading animation"
+             src="https://content.delta.com/content/dam/delta-applications/pcc/oci_170901/images/common/plane-loading.gif?ver=17090143-oci">
+    </div>
+
+    <div *ngIf="seatMapLoaded" class="seat-map">
+        <svg version="1.1"
+             [attr.viewBox]="'0 0 ' + (deck.deckWidth) +' '+ (deck.deckLength)"
+             preserveAspectRatio="xMidYMin slice"
+             class="deck-image"
+             xmlns="http://www.w3.org/2000/svg">
+            <svg:g *ngFor="let row of deck.cabins.rows">
                 <svg:g *ngFor="let seat of row.columns"
                        [attr.transform]="getSeatTransform(seat)">
                     <svg:image [attr.xlink:href]="seat.image" x="0" y="0"
                                [attr.height]="'35px'"
                                [attr.width]="'35px'"></svg:image>
                     <text text-anchor="middle" x="17" y="23" class="deck-seatnumber">
-                        {{row.rowNumber}}{{seat.code}}
+                        {{seat.code}}
                     </text>
                 </svg:g>
             </svg:g>
-        </svg:g>
-    </svg>
-    html asdf
+        </svg>
+    </div>
+
 </div>

@@ -1,161 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import { DashBoardData, Item, MainService } from './services/main.service';
+import { MainService, SeatMapQuery } from './services/main.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-    deck = {
-        'deckLength': 1495,
-        'deckWidth': 214,
-        'cabins': [{
-            'cabinClass': 'C',
-            'rows': [{
-                'rowNumber': 1,
-                'columns': [{
-                    'code': 'A',
-                    'status': 'FREE',
-                    'image': 'url',
-                    'xCoordinate': 3,
-                    'yCoordinate': 3
+    // origin: string = '';
+    // destination: string = '';
+    // departureDate: string = '';
+    // departureTime: string = '';
+    // flightNumber: string = '';
+
+    origin: string = 'ATL';
+    destination: string = 'MSP';
+    departureDate: string = '15NOV';
+    departureTime: string = '0727A';
+    flightNumber: string = 'DL1866';
+
+    deck: any;
+    seatMapLoaded: boolean = false;
+    seatMapRequested: boolean;
+
+    constructor(private mainService: MainService) {
+    }
+
+    ngOnInit() {
+        // this.getSeatMap();
+    }
+
+    getSeatMap() {
+        this.seatMapRequested = true;
+        this.seatMapLoaded = false;
+        const seatMapQuery: SeatMapQuery = {
+            origin: this.origin,
+            destination: this.destination,
+            departureDate: this.departureDate,
+            departureTime: this.departureTime,
+            flightNumber: this.flightNumber
+        }
+        this.mainService.getData(seatMapQuery)
+            .subscribe(res => {
+                    this.deck = res.customSeatMapResponse.decks;
+                    this.seatMapLoaded = true;
                 },
-                    {
-                        'code': 'B',
-                        'status': 'FREE',
-                        'image': 'url',
-                        'xCoordinate': 33,
-                        'yCoordinate': 3
-                    },
-                    {
-                        'code': 'C',
-                        'status': 'FREE',
-                        'image': 'url',
-                        'xCoordinate': 61,
-                        'yCoordinate': 3
-                    },
-                    {
-                        'code': 'D',
-                        'status': 'FREE',
-                        'image': 'url',
-                        'xCoordinate': 120,
-                        'yCoordinate': 3
-                    },
-                    {
-                        'code': 'E',
-                        'status': 'FREE',
-                        'image': 'url',
-                        'xCoordinate': 149,
-                        'yCoordinate': 3
-                    },
-                    {
-                        'code': 'F',
-                        'status': 'FREE',
-                        'image': 'url',
-                        'xCoordinate': 178,
-                        'yCoordinate': 3
-                    }
-                ]
-            }]
-        },
-            {
-                'cabinClass': 'D',
-                'rows': [{
-                    'rowNumber': 2,
-                    'columns': [{
-                        'code': 'A',
-                        'status': 'FREE',
-                        'image': 'url',
-                        'xCoordinate': 3,
-                        'yCoordinate': 51
-                    },
-                        {
-                            'code': 'B',
-                            'status': 'FREE',
-                            'image': 'url',
-                            'xCoordinate': 33,
-                            'yCoordinate': 51
-                        },
-                        {
-                            'code': 'C',
-                            'status': 'FREE',
-                            'image': 'url',
-                            'xCoordinate': 61,
-                            'yCoordinate': 51
-                        },
-                        {
-                            'code': 'D',
-                            'status': 'FREE',
-                            'image': 'url',
-                            'xCoordinate': 120,
-                            'yCoordinate': 51
-                        },
-                        {
-                            'code': 'E',
-                            'status': 'FREE',
-                            'image': 'url',
-                            'xCoordinate': 149,
-                            'yCoordinate': 51
-                        },
-                        {
-                            'code': 'F',
-                            'status': 'FREE',
-                            'image': 'url',
-                            'xCoordinate': 178,
-                            'yCoordinate': 51
-                        }
-                    ]
-                },
-                    {
-                        'rowNumber': 3,
-                        'columns': [{
-                            'code': 'A',
-                            'status': 'FREE',
-                            'image': 'url',
-                            'xCoordinate': 3,
-                            'yCoordinate': 99
-                        },
-                            {
-                                'code': 'B',
-                                'status': 'FREE',
-                                'image': 'url',
-                                'xCoordinate': 33,
-                                'yCoordinate': 99
-                            },
-                            {
-                                'code': 'C',
-                                'status': 'FREE',
-                                'image': 'url',
-                                'xCoordinate': 61,
-                                'yCoordinate': 99
-                            },
-                            {
-                                'code': 'D',
-                                'status': 'FREE',
-                                'image': 'url',
-                                'xCoordinate': 120,
-                                'yCoordinate': 99
-                            },
-                            {
-                                'code': 'E',
-                                'status': 'FREE',
-                                'image': 'url',
-                                'xCoordinate': 149,
-                                'yCoordinate': 99
-                            },
-                            {
-                                'code': 'F',
-                                'status': 'FREE',
-                                'image': 'url',
-                                'xCoordinate': 178,
-                                'yCoordinate': 99
-                            }
-                        ]
-                    }]
-            }]
-    };
+                err => {
+                    console.log(err);
+                });
+    }
 
     getSeatTransform(seat): string {
         return `translate(${seat.xCoordinate}, ${seat.yCoordinate}), scale(0.9)`;

@@ -1,16 +1,81 @@
-div {
-    display: block;
-    position: absolute;
-    top: 56px;
-    height: 784px;
-    overflow: hidden;
-    width: 398px; // 40px left & right gap (for scroller, passengerlist)
-margin-left: 112px;
+.top {
+    position: fixed;
+    background-color: #22659c;
+    z-index: 5;
+    height: 250px;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,.24), 0 0 4px 0 rgba(0,0,0,.12);
+}
+
+.header {
+    position: fixed;
+    text-align: center;
+    padding: 26px;
+    font-size: 44px;
+     width: 100%;
+    z-index: 5;
+    color: #fff;
+}
+
+.query {
+    position: fixed;
+    top: 100px;
+    left: 20%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+}
+
+.search {
+    position: fixed;
+    top: 188px;
+    z-index: 5;
+    left: 48%;
+}
+
+.wait {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+.search-button {
+    background: #be2004;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.seat-map {
+    position: relative;
+    top: 250px;
+    left: 35%;
+    width: 25%;
+}
+
+input {
+    background: #FFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 2px;
+    font-size: 18px;
+    height: 8px;
+    line-height: 18px;
+    padding: 20px;
+    margin: auto;
+    text-align: left;
+    width: 15%;
 }
 
 .deck-image {
     padding-top: 64px;
-    z-index: 10;
     overflow: visible
 }
 
